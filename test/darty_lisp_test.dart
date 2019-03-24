@@ -1,9 +1,8 @@
-import 'package:darty_lisp/src/scanner.dart';
-
 import 'package:test/test.dart';
 
+import 'package:darty_lisp/src/scanner.dart';
+
 void main() {
-  // Scanner Tests
   group('Scanner Tests', () {
     Scanner ourScanner;
 
