@@ -53,3 +53,18 @@ void main() {
     });
   });
 }
+
+expectTokens(Token a, Token b) {
+  expect(
+    a.value,
+    b.value,
+  );
+  expect(
+    a.type,
+    b.type,
+  );
+  expect(
+    a.charSize,
+    b.charSize,
+  );
+}

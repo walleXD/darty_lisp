@@ -1,8 +1,6 @@
 import 'dart:collection';
 import 'dart:mirrors';
 
-import 'package:test/test.dart';
-
 class Token {
   Token({this.type, this.value, this.charSize});
 
@@ -71,21 +69,6 @@ class Token {
 
   static Token tokenizeNum(String input, int current) =>
       tokenizePattern("num", RegExp("[0-9]"), input, current);
-}
-
-expectTokens(Token a, Token b) {
-  expect(
-    a.value,
-    b.value,
-  );
-  expect(
-    a.type,
-    b.type,
-  );
-  expect(
-    a.charSize,
-    b.charSize,
-  );
 }
 
 class Tokens extends IterableBase {

@@ -1,11 +1,11 @@
 name: darty_lisp
 description: A starting point for Dart libraries or applications.
-# version: 1.0.0
-# homepage: https://www.example.com
-# author: Walee Ahmed <email@example.com>
+version: 0.1.1
+homepage: https://github.com/walleXD/darty_lisp
+author: Walee Ahmed <dev@walee.me>
 
 environment:
-  sdk: '>=2.1.0 <3.0.0'
+  sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
   path: ^1.4.1
