@@ -49,6 +49,24 @@ class Token {
 
   static Token tokenizeName(String input, int current) =>
       tokenizePattern("name", RegExp("[A-Za-z]"), input, current);
+
+  static Token tokenizeString(String input, int current) {
+    var char = input[current];
+    String value = "";
+    int consumedChar = 0;
+    if (char == '"') {
+      consumedChar++;
+      var char = input[current + consumedChar];
+      while (char != '"') {
+        value += char;
+        consumedChar++;
+        char = input[current + consumedChar];
+      }
+
+      return Token(type: "string", value: value, charSize: consumedChar);
+    }
+    return Token(type: "EOF", value: null, charSize: 0);
+  }
 }
 
 class _TokenMatcher extends Matcher {

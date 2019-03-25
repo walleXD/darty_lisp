@@ -36,5 +36,10 @@ void main() {
       expectTokens(Token.tokenizeName('Hello World', 0),
           Token(type: 'name', value: 'Hello', charSize: 5));
     });
+
+    test('Generate tokens for strings', () {
+      expectTokens(Token.tokenizeString('"Hello World"', 0),
+          Token(type: 'string', value: 'Hello World', charSize: 12));
+    });
   });
 }
