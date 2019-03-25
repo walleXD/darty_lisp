@@ -1,7 +1,6 @@
-A library for Dart developers.
+# Darty LISP
 
-Created from templates made available by Stagehand under a BSD-style
-[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
+A library for LISP developers looking for Darty expreinces.
 
 ## Usage
 
@@ -11,7 +10,12 @@ A simple usage example:
 import 'package:darty_lisp/darty_lisp.dart';
 
 main() {
-  var awesome = new Awesome();
+  // Lexer to generate tokens for LISP programs
+  Tokens lexer = new Tokens();
+  lexer.program = '(add 2 3)';
+  lexer.generate();
+
+  lexer.prettyPrint();
 }
 ```
 
@@ -19,4 +23,4 @@ main() {
 
 Please file feature requests and bugs at the [issue tracker][tracker].
 
-[tracker]: http://example.com/issues/replaceme
+[tracker]: https://github.com/walleXD/darty_lisp/issues
