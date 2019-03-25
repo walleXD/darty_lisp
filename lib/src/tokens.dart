@@ -67,6 +67,11 @@ class Token {
     }
     return Token(type: "EOF", value: null, charSize: 0);
   }
+
+  static Token skipWhiteSpace(String input, int i) =>
+      RegExp(r'\s').hasMatch(input)
+          ? Token(type: "EOF", value: null, charSize: 1)
+          : Token(type: "EOF", value: null, charSize: 0);
 }
 
 class _TokenMatcher extends Matcher {

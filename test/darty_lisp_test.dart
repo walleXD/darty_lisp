@@ -41,5 +41,15 @@ void main() {
       expectTokens(Token.tokenizeString('"Hello World"', 0),
           Token(type: 'string', value: 'Hello World', charSize: 12));
     });
+
+    test('Generate tokens to skip whitespace', () {
+      expectTokens(Token.skipWhiteSpace(' ', 1),
+          Token(type: 'EOF', value: null, charSize: 1));
+    });
+
+    test('Generate tokens to at end of file', () {
+      expectTokens(Token.skipWhiteSpace('', 1),
+          Token(type: 'EOF', value: null, charSize: 0));
+    });
   });
 }
