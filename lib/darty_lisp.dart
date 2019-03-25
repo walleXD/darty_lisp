@@ -4,4 +4,4 @@
 // TODO: Add docs
 library darty_lisp;
 
-export 'src/scanner.dart';
+export 'src/tokens.dart';

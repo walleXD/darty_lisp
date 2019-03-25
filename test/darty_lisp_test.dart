@@ -1,6 +1,5 @@
 import 'package:test/test.dart';
 
-import 'package:darty_lisp/src/scanner.dart';
 import 'package:darty_lisp/src/tokens.dart';
 
 void main() {
@@ -36,17 +35,6 @@ void main() {
     test('Generate tokens for name with space', () {
       expectTokens(Token.tokenizeName('Hello World', 0),
           Token(type: 'name', value: 'Hello', charSize: 5));
-    });
-  });
-    Scanner ourScanner;
-
-    setUp(() {
-      ourScanner = Scanner();
-    });
-
-    test('Tokenize Parentesis', () {
-      expect(ourScanner.tokenize('((lambda (x) x) "Lisp")'),
-          ['(', '(', 'lambda', '(', 'x', ')', 'x', ')', '"Lisp"', ')']);
     });
   });
 }
