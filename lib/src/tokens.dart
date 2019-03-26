@@ -8,10 +8,6 @@ class Token {
   final String value;
   final int charSize;
 
-  operator ==(t) => equals(t);
-
-  bool equals(Token t) => t.type == type && t.value == value;
-
   static Token tokenizeCharacter(
           String type, String value, String input, int current) =>
       value == input[current]
@@ -25,7 +21,7 @@ class Token {
     if (pattern.hasMatch(char)) {
       var value = "";
       while (char != null && pattern.hasMatch(char)) {
-        value += char;
+        value = value + char;
         consumedChar++;
         char = input[current + consumedChar];
       }
@@ -85,11 +81,11 @@ class Tokens extends IterableBase {
   int _parenOpenCount = 0;
   int _numSum = 0;
 
-// TODO: Add test cases for getNextToken
+  // TODO(wallexd): Add test cases for getNextToken
   static Token getNextToken(String input, int i) {
     bool tokenized = false;
     Token token;
-    ClassMirror tm = reflectClass(Token);
+    final ClassMirror tm = reflectClass(Token);
     for (var m in tm.staticMembers.values) {
       if (m.simpleName != Symbol('tokenizeCharacter') &&
           m.simpleName != Symbol('tokenizePattern') &&
@@ -100,14 +96,17 @@ class Tokens extends IterableBase {
           tokenized = true;
         }
       }
-      if (tokenized) break;
+      if (tokenized) {
+        break;
+      }
     }
     return token;
   }
 
+  /// Records token stats in the lexer
   void keepCount(Token token) {
     switch (token.type) {
-      case "name":
+      case 'names':
         _literalAtomCount += 1;
         break;
       case "num":
@@ -125,7 +124,8 @@ class Tokens extends IterableBase {
     }
   }
 
-// TODO: Add more generaic test cases
+  // TODO(wallexd): Add more generaic test cases
+  /// Driver method to generate tokens from program
   void generate() {
     int i = 0;
     _program = _program.trim();
@@ -142,17 +142,13 @@ class Tokens extends IterableBase {
     }
   }
 
+  /// Prints out info about the tokens Lexer
   void prettyPrint() {
-    /** 
-     * LITERAL ATOMS: 5, DEFUN, F23, X, PLUS, X
-     * NUMERIC ATOMS: 2, 67
-     * OPEN PARENTHESES: 3
-     * CLOSING PARENTHESES: 3
-    */
     print(
-        'LITERAL ATOMS: ${this._literalAtomCount}, ${this._tokens.where((token) => token.type == "name").map((token) => token.value).join(" , ")}');
-    print('NUMERIC ATOMS: ${this._numeralAtomCount}, ${this._numSum}');
-    print('OPEN PARENTHESES: ${this._parenOpenCount}');
-    print('CLOSE PARENTHESES: ${this._parenCloseCount}');
+      'LITERAL ATOMS: {_literalAtomCount}, {_tokens.where((token) => token.type == "name").map((token) => token.value).join(" , ")}',
+    );
+    print('NUMERIC ATOMS: {_numeralAtomCount}, {_numSum}');
+    print('OPEN PARENTHESES: {_parenOpenCount}');
+    print('CLOSE PARENTHESES: {_parenCloseCount}');
   }
 }
