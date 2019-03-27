@@ -107,17 +107,17 @@ class Tokens extends IterableBase {
   void keepCount(Token token) {
     switch (token.type) {
       case 'names':
-        _literalAtomCount += 1;
+        this._literalAtomCount += 1;
         break;
       case "num":
-        _numeralAtomCount += 1;
-        _numSum += num.tryParse(token.value);
+        this._numeralAtomCount += 1;
+        this._numSum += num.tryParse(token.value);
         break;
       case "paren":
         if (token.value == "(")
-          _parenOpenCount += 1;
+          this._parenOpenCount += 1;
         else
-          _parenCloseCount += 1;
+          this._parenCloseCount += 1;
         break;
       default:
         break;

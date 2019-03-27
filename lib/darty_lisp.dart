@@ -5,3 +5,4 @@
 library darty_lisp;
 
 export 'src/tokens.dart';
+export 'src/scanner.dart';
